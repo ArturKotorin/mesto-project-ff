@@ -27,4 +27,5 @@ function createCard(cardData, deleteCardCallback, likeCardCallback, openCardCall
   return cardElement;
 }
 
+
 export {deleteCard, likeCard, createCard}

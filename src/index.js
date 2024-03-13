@@ -22,12 +22,11 @@ const profileAddButton = document.querySelector(".profile__add-button");
 
 function openCard(event) {
     const cardElement = event.target.closest(".card");
-    const cardImage = cardElement.querySelector(".card__image").src;
-    const cardName = cardElement.querySelector(".card__image").alt;
+    const cardImage = cardElement.querySelector(".card__image");
     const cardTitle = cardElement.querySelector(".card__title").textContent;
     openPopup(popupImage);
-    popupImageImg.src = cardImage;
-    popupImageImg.alt = cardName;
+    popupImageImg.src = cardImage.src;
+    popupImageImg.alt = cardImage.alt;
     popupImageCaption.textContent = cardTitle;
 }
 
@@ -40,7 +39,7 @@ function addNewCard(makeCard) {
 }
 
 initialCards.forEach((initialCard) => {
-    let createdCard = createCard(initialCard, deleteCard, likeCard, openCard);
+    const createdCard = createCard(initialCard, deleteCard, likeCard, openCard);
     addCard(createdCard);
 });
 
@@ -80,11 +79,11 @@ function handleProfileFormSubmit(evt) {
 
 function handleAddNewCardSubmit(evt) {
     evt.preventDefault();
-    let newCard = { 
+    const newCard = { 
         name: popupNewCardName.value, 
         link: popupNewCardLink.value 
     }
-    let createdCard = createCard(
+    const createdCard = createCard(
       newCard,
       deleteCard,
       likeCard,
