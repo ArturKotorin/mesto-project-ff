@@ -54,7 +54,7 @@ Promise.all([initialCards(), initialProfileData("me")])
     const profileData = initialData[1];
 
     initialCardsHendler.forEach((card) => {
-      let makeCard = createCard(
+      const makeCard = createCard(
         card,
         deleteCard,
         likeCard,
@@ -187,7 +187,7 @@ function handleAddNewCardSubmit(evt) {
     link: popupNewCardLink.value,
   })
   .then((card) => {
-    let makeCard = createCard(
+    const makeCard = createCard(
       card,
       deleteCard,
       likeCard,
