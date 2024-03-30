@@ -151,6 +151,7 @@ function handleProfileFormSubmit(evt) {
   .then((profileData) =>{
   profileName.textContent = profileData.name;
   profileJob.textContent = profileData.about;
+  closePopup(popupProfileEdit);
   })
   .catch((errorMessage) =>{
   console.log(errorMessage)
@@ -158,7 +159,7 @@ function handleProfileFormSubmit(evt) {
   .finally(()=>{
   renderLoading(false, popupButton);
   });
-  closePopup(popupProfileEdit);
+  
 }
 
 function handleEditAvatarSubmit(evt) {
@@ -168,6 +169,7 @@ function handleEditAvatarSubmit(evt) {
   updateProfileAvatar({ avatar: popupAvatarLink.value })
   .then((profileData) => {
     profileAvatar.style.backgroundImage = `url('${profileData.avatar}')`;
+    closePopup(popupEditAvatar);
   })
   .catch((errorMessage) =>{
     console.log(errorMessage)
@@ -175,7 +177,6 @@ function handleEditAvatarSubmit(evt) {
   .finally(()=>{
     renderLoading(false, popupButton);
   });
-  closePopup(popupEditAvatar);
 }
 
 function handleAddNewCardSubmit(evt) {
@@ -196,6 +197,7 @@ function handleAddNewCardSubmit(evt) {
       );
     addNewCard(makeCard);
     evt.target.reset();
+    closePopup(popupNewCard);
   })
   .catch((errorMessage) =>{
     console.log(errorMessage)
@@ -203,7 +205,6 @@ function handleAddNewCardSubmit(evt) {
   .finally(()=>{
     renderLoading(false, popupButton);
   });
-  closePopup(popupNewCard);
 }
 
 enableValidation({

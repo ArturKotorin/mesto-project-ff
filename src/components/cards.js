@@ -21,8 +21,11 @@ function createCard(cardData, deleteCardCallback, likeCardCallback, openCardCall
     const deleteButton = cardElement.querySelector(".card__delete-button");
     deleteButton.classList.add('card__delete-button_visible');
     deleteButton.addEventListener("click", function(event){
-      deleteCardRequest(cardData._id);
-      deleteCardCallback(event);
+      deleteCardRequest(cardData._id)
+        .then(deleteCardCallback(event))
+        .catch((error) => {
+          console.log(`Ошибка ${error}`);
+        })
     });
   }
 
@@ -39,12 +42,18 @@ function createCard(cardData, deleteCardCallback, likeCardCallback, openCardCall
         cardLikesCounter.textContent = cardDataLikes.likes.length;
         likeCardCallback(event);
       })
+      .catch((error) => {
+        console.log(`Ошибка ${error}`);
+      })
   }
     else{
       sendCardLike(cardData._id)
       .then((cardDataLikes) =>{
         cardLikesCounter.textContent = cardDataLikes.likes.length;
         likeCardCallback(event);
+      })
+      .catch((error) => {
+        console.log(`Ошибка ${error}`);
       })
     }
     });
